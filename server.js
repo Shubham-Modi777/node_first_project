@@ -1,6 +1,8 @@
 const express = require('express');
 const db = require('./db');
 
+require("dotenv").config();
+const PORT = process.env.PORT || 3000;
 
 //exporting model
 const Employee = require('./models/employee');
@@ -27,8 +29,9 @@ app.post('/employee', async (req, res)=>{
 
 app.get('/employee', async (req, res)=>{
     try {
-        let data = await Employee.find()
-        res.status(200).json(data)
+        let data = await Employee.find();
+        console.log("fetched data", data);
+        res.status(200).json(data);
     } catch (error) {
         console.log("inside catch", error);
         res.status(500).json({error: "Internal server error"})
@@ -77,6 +80,6 @@ app.put('/employee/:id', async (req, res)=>{
 })
 
 
-app.listen(3000, ()=>{
+app.listen(PORT, ()=>{
     console.log("Listening to port 3000")
 })
