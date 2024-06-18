@@ -6,7 +6,7 @@ const db = require('./db');
 const Employee = require('./models/employee');
 
 const app = express();
-app.use(express.json());
+app.use(express.json()); // to Parses the text as JSON and exposes the resulting object on req.body
 app.get('/', (req, res)=>{
     res.send("Welcome to Yum Team...!")
 })
